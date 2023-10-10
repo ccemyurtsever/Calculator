@@ -10,7 +10,7 @@ class MainForm(QMainWindow):
     def __init__(self):
         super(MainForm, self).__init__()
         self.setWindowIcon(QIcon("icon.png"))
-        self.setWindowTitle("CCY - Calculator")
+        self.setWindowTitle("CY - Calculator")
         self.setGeometry(200, 200, 370, 487)
         self.initUI()
 
@@ -155,8 +155,10 @@ class MainForm(QMainWindow):
 
 
     def hesapla(self):
+        if self.entry1.text() == "" or self.entry2.text() == "":
+            QMessageBox.about(self, "CY - Warning", "Please enter a number")
+            
         sender = self.sender().text()
-
         result = 0
         if sender == "+":
             result = int(self.entry1.text()) + int(self.entry2.text())
@@ -197,11 +199,10 @@ class MainForm(QMainWindow):
         elif sender == "0":
             self.entry1.setText(self.entry1.text() + "0")
         elif sender == "?":
-            QMessageBox.about(self, "CCY - İnfo", "For communication: https://ccemyurtsever.com/")
+            QMessageBox.about(self, "CY - İnfo", "For communication: https://cemyurtsever.dev/")
         elif sender == "AC":
             self.entry1.clear()
             self.entry2.clear()
-
 
         self.sonuc.setText(f"Result {result}")
 
